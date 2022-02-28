@@ -1,6 +1,8 @@
 import * as path from "path"
 import { bufferToString, rootDir, testWebpack } from "./helpers/helper"
 
+jest.setTimeout(600000)
+
 test("title true", () => testTitle(true))
 test("title false", () => testTitle(false))
 test("title null", () => testTitle(null))

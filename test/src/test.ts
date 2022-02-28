@@ -5,6 +5,8 @@ import { doTest, getMutableProjectDir, rootDir, testWebpack, tmpDir } from "./he
 
 afterEach(() => tmpDir.cleanup())
 
+jest.setTimeout(600000)
+
 test("app", () => doTest("webpack.app.config.js"))
 
 test("main production", () => doTest("webpack.main.config.js"))

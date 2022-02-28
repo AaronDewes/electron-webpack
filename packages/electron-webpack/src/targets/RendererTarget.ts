@@ -125,7 +125,8 @@ export class RendererTarget extends BaseRendererTarget {
       filename: "index.html",
       template: await generateIndexFile(configurator, nodeModulePath, template),
       minify: false,
-      nodeModules: nodeModulePath
+      nodeModules: nodeModulePath,
+      inject: false,
     }))
 
     if (configurator.isProduction) {
@@ -164,6 +165,7 @@ async function computeTitle(configurator: WebpackConfigurator): Promise<string |
       packageKey: "build",
       configFilename: "electron-builder",
       projectDir: configurator.projectDir,
+      // @ts-expect-error
       packageMetadata: new Lazy(() => Promise.resolve(configurator.metadata))
     })
     if (electronBuilderConfig != null) {
@@ -227,5 +229,5 @@ async function generateIndexFile(configurator: WebpackConfigurator, nodeModulePa
 
   await outputFile(filePath, html)
 
-  return `!!html-loader?minimize=false&attributes=false!${filePath}`
+  return `!!html-loader?minimize=false&sources=false!${filePath}`
 }

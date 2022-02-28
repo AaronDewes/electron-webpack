@@ -1,13 +1,13 @@
 import * as BluebirdPromise from "bluebird"
 import { config as dotEnvConfig } from "dotenv"
-import dotEnvExpand from "dotenv-expand"
+import { expand as dotEnvExpand } from "dotenv-expand"
 import { pathExists, readJson } from "fs-extra"
 import { Lazy } from "lazy-val"
 import * as path from "path"
 import { validateConfig } from "read-config-file"
 import { deepAssign } from "read-config-file/out/deepAssign"
 import "source-map-support/register"
-import { Configuration, Plugin, RuleSetRule } from "webpack"
+import { Configuration, type WebpackPluginFunction, type WebpackPluginInstance, RuleSetRule } from "webpack"
 import merge from "webpack-merge"
 import { getElectronWebpackConfiguration, getPackageMetadata } from "./config"
 import { configureTypescript } from "./configurators/ts"
@@ -76,7 +76,7 @@ export class WebpackConfigurator {
   }
 
   readonly rules: Array<RuleSetRule> = []
-  readonly plugins: Array<Plugin> = []
+  readonly plugins: Array<WebpackPluginFunction | WebpackPluginInstance> = []
 
   // js must be first - e.g. iView has two files loading-bar.js and loading-bar.vue - when we require "loading-bar", js file must be resolved and not vue
   readonly extensions: Array<string> = [".js", ".json", ".node"]
@@ -257,7 +257,7 @@ export class WebpackConfigurator {
         return customModule(config, this)
       }
       else {
-        return merge.smart(config, customModule)
+        return merge(config, customModule)
       }
     }
 
@@ -333,6 +333,7 @@ export async function createConfigurator(type: ConfigurationType, env: Configura
     deepAssign(electronWebpackConfig, env.configuration)
   }
 
+  // @ts-ignore
   await validateConfig(electronWebpackConfig, schemeDataPromise, message => {
     return `${message}
 
@@ -396,7 +397,7 @@ async function getInstalledElectronVersion(projectDir: string) {
     try {
       return (await readJson(path.join(projectDir, "node_modules", name, "package.json"))).version
     }
-    catch (e) {
+    catch (e: any) {
       if (e.code !== "ENOENT") {
         throw e
       }

@@ -43,7 +43,7 @@ export async function startRenderer(projectDir: string, env: any) {
     new OneTimeLineFilter("Project is running at "),
     new OneTimeLineFilter("webpack output is served from "),
   ])
-  return await new Promise((resolve: (() => void) | null, reject: ((error: Error) => void) | null) => {
+  return await new Promise((resolve: ((value: void | PromiseLike<void>) => void) | null, reject: ((reason?: any) => void) | null) => {
     let devServerProcess: ChildProcess | null
     try {
       devServerProcess = runWds(projectDir, env)

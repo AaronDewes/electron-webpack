@@ -26,6 +26,7 @@ export async function getElectronWebpackConfiguration(context: ConfigurationRequ
     packageKey: "electronWebpack",
     configFilename: "electron-webpack",
     projectDir: context.projectDir,
+    // @ts-ignore
     packageMetadata: context.packageMetadata
   })
   const configuration: ElectronWebpackConfiguration = result == null || result.result == null ? {} : result.result

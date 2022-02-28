@@ -1,5 +1,5 @@
 import * as path from "path"
-import { DefinePlugin, EnvironmentPlugin, HotModuleReplacementPlugin, LoaderOptionsPlugin, version as webpackVersion } from "webpack"
+import { DefinePlugin, EnvironmentPlugin, HotModuleReplacementPlugin, LoaderOptionsPlugin } from "webpack"
 import { getDefaultRelativeSystemDependentCommonSource } from "../config"
 import { configureDll } from "../configurators/dll"
 import { configureEslint } from "../configurators/eslint"
@@ -60,17 +60,8 @@ export class BaseTarget {
 
     if (configurator.isProduction) {
       if (configurator.env.minify !== false) {
-        const TerserPlugin = require("terser-webpack-plugin")
-        // noinspection SpellCheckingInspection
-        optimization.minimizer = [new TerserPlugin({
-          parallel: true,
-          sourceMap: true,
-          terserOptions: {
-            keep_fnames: true,
-          },
-        })]
+        optimization.minimize = true
       }
-      optimization.minimize = true
       plugins.push(new LoaderOptionsPlugin({minimize: true}))
 
       // do not use ModuleConcatenationPlugin for HMR
@@ -85,7 +76,7 @@ export class BaseTarget {
       plugins.push(new WebpackRemoveOldAssetsPlugin(dllManifest))
     }
 
-    optimization.noEmitOnErrors = true
+    optimization.emitOnErrors = false
 
     const additionalEnvironmentVariables = Object.keys(process.env).filter(it => it.startsWith("ELECTRON_WEBPACK_"))
     if (additionalEnvironmentVariables.length > 0) {
@@ -110,12 +101,7 @@ function isAncestor(file: string, dir: string) {
 
 function configureDevelopmentPlugins(configurator: WebpackConfigurator) {
   const optimization = configurator.config.optimization!!
-  if (parseInt(String(webpackVersion), 10) >= 5) {
-    optimization.moduleIds = 'named'
-  }
-  else {
-    optimization.namedModules = true
-  }
+  optimization.moduleIds = 'named'
 
   const plugins = configurator.plugins
   plugins.push(new DefinePlugin({

@@ -42,13 +42,13 @@ function createTransformer(options) {
 
   return {
     canInstrument: true,
-    getCacheKey(fileData, filename, configString, _ref2) {
+    getCacheKey(fileData, filename, config) {
       return crypto.createHash("md5")
         .update(fileData)
         .update(isFullyCompiled(fileData) ? "f": "p")
-        .update(configString)
+        .update(JSON.stringify(config))
         .update(getBabelRcDigest())
-        .update(_ref2.instrument ? "instrument" : "")
+        .update(filename)
         .digest("hex")
     },
     process(src, filename, config, transformOptions) {

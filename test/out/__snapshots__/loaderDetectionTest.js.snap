@@ -1,81 +1,230 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`nunjucks 1`] = `
-"./src/main/index.js
-Module not found: Error: Can't resolve 'nunjucks-loader' in '<project-dir>'
-resolve 'nunjucks-loader' in '<project-dir>'
-  Parsed request is a module
-  using description file: <project-dir>/package.json (relative path: .)
-    resolve as module
-      looking for modules in <root-dir>/node_modules
-        using description file: <root-dir>/package.json (relative path: ./node_modules)
-          using description file: <root-dir>/package.json (relative path: ./node_modules/nunjucks-loader)
-            no extension
-              <root-dir>/node_modules/nunjucks-loader doesn't exist
-            .js
-              <root-dir>/node_modules/nunjucks-loader.js doesn't exist
-            .json
-              <root-dir>/node_modules/nunjucks-loader.json doesn't exist
-            as directory
-              <root-dir>/node_modules/nunjucks-loader doesn't exist
-      looking for modules in <root-dir>/packages/electron-webpack/node_modules
-        using description file: <root-dir>/packages/electron-webpack/package.json (relative path: ./node_modules)
-          using description file: <root-dir>/packages/electron-webpack/package.json (relative path: ./node_modules/nunjucks-loader)
-            no extension
-              <root-dir>/packages/electron-webpack/node_modules/nunjucks-loader doesn't exist
-            .js
-              <root-dir>/packages/electron-webpack/node_modules/nunjucks-loader.js doesn't exist
-            .json
-              <root-dir>/packages/electron-webpack/node_modules/nunjucks-loader.json doesn't exist
-            as directory
-              <root-dir>/packages/electron-webpack/node_modules/nunjucks-loader doesn't exist
-[<root-dir>/node_modules/nunjucks-loader]
-[<root-dir>/node_modules/nunjucks-loader.js]
-[<root-dir>/node_modules/nunjucks-loader.json]
-[<root-dir>/packages/electron-webpack/node_modules/nunjucks-loader]
-[<root-dir>/packages/electron-webpack/node_modules/nunjucks-loader.js]
-[<root-dir>/packages/electron-webpack/node_modules/nunjucks-loader.json]
- @ ./src/main/index.js 3:0-21
- @ multi ./src/main/index.js"
+MemoryFileSystem {
+  "data": Object {},
+  "join": [Function],
+  "normalize": [Function],
+  "pathToArray": [Function],
+}
 `;
 
-exports[`react 1`] = `"Cannot find module '@babel/preset-react' from 'js.js'"`;
+exports[`react 1`] = `
+Object {
+  "context": "/tmp/t-XKuJgW/2",
+  "devtool": "nosources-source-map",
+  "entry": Object {
+    "renderer": Array [
+      "/tmp/t-XKuJgW/2/src/renderer/index.js",
+    ],
+  },
+  "externals": Array [
+    "electron",
+    "webpack",
+    "electron-devtools-installer",
+  ],
+  "mode": "production",
+  "module": Object {
+    "rules": Array [
+      Object {
+        "exclude": /\\(node_modules\\|bower_components\\)/,
+        "test": /\\\\\\.js\\$/,
+        "use": Object {
+          "loader": "babel-loader",
+          "options": Object {
+            "plugins": Array [
+              [Function],
+            ],
+            "presets": Array [
+              Array [
+                [Function],
+                Object {
+                  "modules": false,
+                  "targets": Object {
+                    "electron": "3.0.7",
+                  },
+                },
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+          },
+        },
+      },
+      Object {
+        "test": /\\\\\\.node\\$/,
+        "use": "node-loader",
+      },
+      Object {
+        "test": /\\\\\\.css\\$/,
+        "use": Array [
+          "/home/aarond/electron-webpack/node_modules/mini-css-extract-plugin/dist/loader.js",
+          Object {
+            "loader": "css-loader",
+            "options": Object {
+              "modules": "global",
+            },
+          },
+        ],
+      },
+      Object {
+        "test": /\\\\\\.less\\$/,
+        "use": Array [
+          "/home/aarond/electron-webpack/node_modules/mini-css-extract-plugin/dist/loader.js",
+          Object {
+            "loader": "css-loader",
+            "options": Object {
+              "modules": "global",
+            },
+          },
+          "less-loader",
+        ],
+      },
+      Object {
+        "test": /\\\\\\.s\\(\\[ac\\]\\)ss\\$/,
+        "use": Array [
+          "/home/aarond/electron-webpack/node_modules/mini-css-extract-plugin/dist/loader.js",
+          Object {
+            "loader": "css-loader",
+            "options": Object {
+              "modules": "global",
+            },
+          },
+          "sass-loader",
+        ],
+      },
+      Object {
+        "test": /\\\\\\.\\(png\\|jpe\\?g\\|gif\\)\\(\\\\\\?\\.\\*\\)\\?\\$/,
+        "use": Object {
+          "loader": "url-loader",
+          "options": Object {
+            "limit": 10240,
+            "name": "imgs/[name]--[folder].[ext]",
+          },
+        },
+      },
+      Object {
+        "test": /\\\\\\.svg\\$/,
+        "use": Array [
+          Object {
+            "loader": "@svgr/webpack",
+          },
+          Object {
+            "loader": "url-loader",
+            "options": Object {
+              "limit": 10240,
+              "name": "imgs/[name]--[folder].[ext]",
+            },
+          },
+        ],
+      },
+      Object {
+        "loader": "url-loader",
+        "options": Object {
+          "limit": 10240,
+          "name": "media/[name]--[folder].[ext]",
+        },
+        "test": /\\\\\\.\\(mp4\\|webm\\|ogg\\|mp3\\|wav\\|flac\\|aac\\)\\(\\\\\\?\\.\\*\\)\\?\\$/,
+      },
+      Object {
+        "test": /\\\\\\.\\(woff2\\?\\|eot\\|ttf\\|otf\\)\\(\\\\\\?\\.\\*\\)\\?\\$/,
+        "use": Object {
+          "loader": "url-loader",
+          "options": Object {
+            "limit": 10240,
+            "name": "fonts/[name]--[folder].[ext]",
+          },
+        },
+      },
+      Object {
+        "test": /\\\\\\.\\(html\\)\\$/,
+        "use": Object {
+          "loader": "html-loader",
+        },
+      },
+    ],
+  },
+  "node": Object {
+    "__dirname": false,
+    "__filename": false,
+  },
+  "optimization": Object {
+    "concatenateModules": true,
+    "emitOnErrors": false,
+    "minimize": true,
+    "nodeEnv": "production",
+  },
+  "output": Object {
+    "chunkFilename": "[name].bundle.js",
+    "filename": "[name].js",
+    "libraryTarget": "commonjs2",
+    "path": "/tmp/t-XKuJgW/2/dist/renderer",
+  },
+  "plugins": Array [
+    HtmlWebpackPlugin {
+      "userOptions": Object {
+        "filename": "index.html",
+        "inject": false,
+        "minify": false,
+        "nodeModules": null,
+        "template": "!!html-loader?minimize=false&sources=false!/tmp/t-XKuJgW/2/dist/.renderer-index-template.html",
+      },
+      "version": 5,
+    },
+    DefinePlugin {
+      "definitions": Object {
+        "__static": "process.resourcesPath + \\"/static\\"",
+      },
+    },
+    MiniCssExtractPlugin {
+      "_sortedModulesCache": WeakMap {},
+      "options": Object {
+        "chunkFilename": "[id].styles.css",
+        "experimentalUseImportModule": undefined,
+        "filename": "styles.css",
+        "ignoreOrder": false,
+        "runtime": true,
+      },
+      "runtimeOptions": Object {
+        "attributes": undefined,
+        "insert": undefined,
+        "linkType": "text/css",
+      },
+    },
+    LoaderOptionsPlugin {
+      "options": Object {
+        "minimize": true,
+        "test": Object {
+          "test": [Function],
+        },
+      },
+    },
+    WebpackRemoveOldAssetsPlugin {
+      "dllManifest": null,
+    },
+  ],
+  "resolve": Object {
+    "alias": Object {
+      "@": "/tmp/t-XKuJgW/2/src/renderer",
+      "common": "/tmp/t-XKuJgW/2/src/common",
+    },
+    "extensions": Array [
+      ".js",
+      ".json",
+      ".node",
+      ".css",
+    ],
+  },
+  "target": "electron-renderer",
+}
+`;
 
 exports[`sass 1`] = `
-"./src/renderer/index.js
-Module not found: Error: Can't resolve 'sass-loader' in '<project-dir>'
-resolve 'sass-loader' in '<project-dir>'
-  Parsed request is a module
-  using description file: <project-dir>/package.json (relative path: .)
-    resolve as module
-      looking for modules in <root-dir>/node_modules
-        using description file: <root-dir>/package.json (relative path: ./node_modules)
-          using description file: <root-dir>/package.json (relative path: ./node_modules/sass-loader)
-            no extension
-              <root-dir>/node_modules/sass-loader doesn't exist
-            .js
-              <root-dir>/node_modules/sass-loader.js doesn't exist
-            .json
-              <root-dir>/node_modules/sass-loader.json doesn't exist
-            as directory
-              <root-dir>/node_modules/sass-loader doesn't exist
-      looking for modules in <root-dir>/packages/electron-webpack/node_modules
-        using description file: <root-dir>/packages/electron-webpack/package.json (relative path: ./node_modules)
-          using description file: <root-dir>/packages/electron-webpack/package.json (relative path: ./node_modules/sass-loader)
-            no extension
-              <root-dir>/packages/electron-webpack/node_modules/sass-loader doesn't exist
-            .js
-              <root-dir>/packages/electron-webpack/node_modules/sass-loader.js doesn't exist
-            .json
-              <root-dir>/packages/electron-webpack/node_modules/sass-loader.json doesn't exist
-            as directory
-              <root-dir>/packages/electron-webpack/node_modules/sass-loader doesn't exist
-[<root-dir>/node_modules/sass-loader]
-[<root-dir>/node_modules/sass-loader.js]
-[<root-dir>/node_modules/sass-loader.json]
-[<root-dir>/packages/electron-webpack/node_modules/sass-loader]
-[<root-dir>/packages/electron-webpack/node_modules/sass-loader.js]
-[<root-dir>/packages/electron-webpack/node_modules/sass-loader.json]
- @ ./src/renderer/index.js 3:0-22
- @ multi ./src/renderer/index.js"
+MemoryFileSystem {
+  "data": Object {},
+  "join": [Function],
+  "normalize": [Function],
+  "pathToArray": [Function],
+}
 `;

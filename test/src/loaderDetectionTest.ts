@@ -2,6 +2,8 @@ import { writeFile, writeJson } from "fs-extra"
 import * as path from "path"
 import { assertThat, getMutableProjectDir, testWebpack } from "./helpers/helper"
 
+jest.setTimeout(600000)
+
 test("nunjucks", async () => {
   const projectDir = await getMutableProjectDir()
   await writeJson(path.join(projectDir, "package.json"), {

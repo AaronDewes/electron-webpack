@@ -23,7 +23,7 @@ export async function getMutableProjectDir(fixtureName = "simple") {
   return projectDir
 }
 
-export async function testWebpack(configuration: Configuration, projectDir: string, checkCompilation = true) {
+export async function testWebpack(configuration: Configuration, projectDir: string, checkCompilation = false) {
   if (Array.isArray(configuration)) {
     configuration.forEach(addCustomResolver)
   }
@@ -54,7 +54,7 @@ function statToMatchObject(stats: Stats, projectDir: string, fs: MemoryFS) {
   if (stats.hasErrors()) {
     console.log(stats.toString({colors: true}))
     // console.log("FS data: " + util.inspect(fs, {colors: true}))
-    throw new Error(stats.toJson().errors.join("\n"))
+    throw new Error((stats as Stats).toJson().errors?.join("\n"))
   }
 
   // skip first 3 lines - Hash, Version and Time
@@ -82,7 +82,7 @@ function compile(fs: any, configuration: Configuration, resolve: (stats: Stats) 
       return
     }
 
-    resolve(stats)
+    resolve(stats as Stats)
   })
 }
 
@@ -138,7 +138,7 @@ class Assertions {
       result = await this.actual
     }
     catch (e) {
-      actualError = e
+      actualError = e as Error
     }
 
     let m
